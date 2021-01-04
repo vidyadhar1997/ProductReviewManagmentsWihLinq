@@ -34,6 +34,7 @@ namespace ProductReviewManagement
             Management management = new Management();
             management.topRecords(list);
             management.selectedRecords(list);
+            management.retrieveCountOfRecords(list);
         }
     }
 }
