@@ -125,15 +125,26 @@ namespace ProductReviewManagement
                 Console.WriteLine(list.ProductId + "----------" + list.Average);
             }
         }
-        
+
         /// <summary>
         /// Recordses the with nice review.
         /// </summary>
         /// <param name="listProductReviews">The list product reviews.</param>
         public void recordsWithNiceReview(List<ProductReview> listProductReviews)
         {
-            var recordData = (from productReview in listProductReviews where (productReview.Review.Equals("Nice"))select productReview).ToList();
+            var recordData = (from productReview in listProductReviews where (productReview.Review.Equals("Nice")) select productReview).ToList();
             Console.WriteLine("\n Records with nice review = ");
+            display(recordData);
+        }
+        
+        /// <summary>
+        /// Gets the records with user identifier ten.
+        /// </summary>
+        /// <param name="listProductReviews">The list product reviews.</param>
+        public void getRecordsWithUserIdTen(List<ProductReview> listProductReviews)
+        {
+            var recordData = (from productReview in listProductReviews where (productReview.UserId == 10) orderby productReview.Rating descending select productReview).ToList();
+            Console.WriteLine("\n Records whose user id 10 with rating  = ");
             display(recordData);
         }
     }

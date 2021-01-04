@@ -21,12 +21,12 @@ namespace ProductReviewManagement
             new ProductReview() { ProductId = 8, UserId = 8, Rating = 7.5, Review = "Good", isLike=false},
             new ProductReview() { ProductId = 9, UserId = 9, Rating = 1.5, Review = "Good", isLike=false },
             new ProductReview() { ProductId = 10, UserId = 10, Rating = 6.5, Review = "Bad", isLike=false },
-            new ProductReview() { ProductId = 11, UserId = 11, Rating = 5, Review = "Bad", isLike=false },
+            new ProductReview() { ProductId = 11, UserId = 10, Rating = 2.5, Review = "Bad", isLike=false },
             new ProductReview() { ProductId = 12, UserId = 12, Rating = 5, Review = "Nice", isLike=true },
             new ProductReview() { ProductId = 13, UserId = 13, Rating = 5, Review = "Good", isLike=true },
             new ProductReview() { ProductId = 14, UserId = 14, Rating = 5, Review = "Bad", isLike=true },
-            new ProductReview() { ProductId = 15, UserId = 15, Rating = 5, Review = "Good", isLike=true },
-            new ProductReview() { ProductId = 16, UserId = 16, Rating = 5, Review = "Good", isLike=true },
+            new ProductReview() { ProductId = 15, UserId = 10, Rating = 8.5, Review = "Good", isLike=true },
+            new ProductReview() { ProductId = 16, UserId = 10, Rating = 7.5, Review = "Good", isLike=true },
             new ProductReview() { ProductId = 17, UserId = 17, Rating = 5, Review = "Good", isLike=true },
             new ProductReview() { ProductId = 18, UserId = 18, Rating = 5, Review = "Nice", isLike=true },
             new ProductReview() { ProductId = 19, UserId = 19, Rating = 5, Review = "Nice", isLike=true },
@@ -56,6 +56,7 @@ namespace ProductReviewManagement
             management.retrieveRecordsWithIsLikeTrue(dataTable);
             management.findAvrageRating(list);
             management.recordsWithNiceReview(list);
+            management.getRecordsWithUserIdTen(list);
         }
     }
 }
