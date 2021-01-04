@@ -21,7 +21,7 @@ namespace ProductReviewManagement
                 Console.WriteLine("Product id = " + list.ProductId + "User id = " + list.UserId + "Rating is = " + list.Rating + " Review is = " + list.Review + " isLike = " + list.isLike);
             }
         }
-        
+
         /// <summary>
         /// Retrieve Top 3 records from list.
         /// </summary>
@@ -32,7 +32,7 @@ namespace ProductReviewManagement
             Console.WriteLine("\n Top 3 records = ");
             display(recordData);
         }
-        
+
         /// <summary>
         /// Selecteds the record with rating grater than 3 and with product id =1,3,9.
         /// </summary>
@@ -43,7 +43,7 @@ namespace ProductReviewManagement
             Console.WriteLine("\n Rating grater than 3 with product id 1,4,9 = ");
             display(recordData);
         }
-        
+
         /// <summary>
         /// Retrieves the count of record with  the help of group by id.
         /// </summary>
@@ -57,7 +57,7 @@ namespace ProductReviewManagement
                 Console.WriteLine(list.ProductId + " = " + list.Count);
             }
         }
-        
+
         /// <summary>
         /// Retrieves the productd and review.
         /// </summary>
@@ -71,7 +71,7 @@ namespace ProductReviewManagement
                 Console.WriteLine(list.ProductId + "----------" + list.Review);
             }
         }
-        
+
         /// <summary>
         /// Skips the top five records.
         /// </summary>
@@ -88,14 +88,28 @@ namespace ProductReviewManagement
         /// </summary>
         /// <param name="listProductReviews">The list product reviews.</param>
         /// <returns></returns>
-        public DataTable createTable(List<ProductReview> listProductReviews)
+        public DataTable createTable()
         {
-            dataTable.Columns.Add("ProductId");
-            dataTable.Columns.Add("UserId");
-            dataTable.Columns.Add("Rating");
+            dataTable.Columns.Add("ProductId", typeof(int));
+            dataTable.Columns.Add("UserId",typeof(int));
+            dataTable.Columns.Add("Rating",typeof(double));
             dataTable.Columns.Add("Review");
-            dataTable.Columns.Add("isLike");
+            dataTable.Columns.Add("isLike",typeof(bool));
             return dataTable;
+        }
+
+        /// <summary>
+        ///  Retrieve Records with is value true
+        /// </summary>
+        /// <param name="table"></param>
+        public void RetrieveRecordsWithIsLikeTrue(DataTable table)
+        {
+            var recordData = from productReview in table.AsEnumerable() where (productReview.Field<bool>("isLike") == true) select productReview;
+            Console.WriteLine("Records with is like true = ");
+            foreach (var lists in recordData)
+            {
+                Console.WriteLine("Product id = " + lists.Field<int>("ProductId") + "User id = " + lists.Field<int>("UserId") + "Rating is = " + lists.Field<double>("Rating") + " Review is = " + lists.Field<string>("Review") + " isLike = " + lists.Field<bool>("isLike"));
+            }
         }
     }
 }

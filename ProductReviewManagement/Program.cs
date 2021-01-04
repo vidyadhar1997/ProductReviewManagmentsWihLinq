@@ -47,12 +47,12 @@ namespace ProductReviewManagement
             management.retrieveCountOfRecords(list);
             management.retrieveProductdAndReview(list);
             management.skipTopFiveRecords(list);
-            DataTable dataTable=management.createTable(list);
+            DataTable dataTable=management.createTable();
             foreach (var lists in list)
             {
-                dataTable.Rows.Add(lists.ProductId, lists.UserId, lists.Rating, lists.Review,lists.isLike);
-
+                dataTable.Rows.Add(lists.ProductId, lists.UserId, lists.Rating, lists.Review,(bool)lists.isLike);
             }
+            management.RetrieveRecordsWithIsLikeTrue(dataTable);
         }
     }
 }
