@@ -41,6 +41,7 @@ namespace ProductReviewManagement
             Console.WriteLine("\n Rating grater than 3 with product id 1,4,9 = ");
             display(recordData);
         }
+        
         /// <summary>
         /// Retrieves the count of record with  the help of group by id.
         /// </summary>
@@ -52,6 +53,20 @@ namespace ProductReviewManagement
             foreach (var list in recordData)
             {
                 Console.WriteLine(list.ProductId + " = " + list.Count);
+            }
+        }
+        
+        /// <summary>
+        /// Retrieves the productd and review.
+        /// </summary>
+        /// <param name="listProductReviews">The list product reviews.</param>
+        public void retrieveProductdAndReview(List<ProductReview> listProductReviews)
+        {
+            var recordData = listProductReviews.Select(x => new { ProductId = x.ProductId, Review = x.Review });
+            Console.WriteLine("\n Product id and review = ");
+            foreach (var list in recordData)
+            {
+                Console.WriteLine(list.ProductId + "----------" + list.Review);
             }
         }
     }
