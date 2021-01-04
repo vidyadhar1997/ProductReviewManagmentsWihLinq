@@ -11,6 +11,7 @@ namespace ProductReviewManagement
             List<ProductReview> list = new List<ProductReview>()
             {
             new ProductReview() { ProductId = 1, UserId = 1, Rating = 5.5, Review = "Good", isLike=true},
+            new ProductReview() { ProductId = 1, UserId = 1, Rating = 5.5, Review = "Good", isLike=true},
             new ProductReview() { ProductId = 2, UserId = 2, Rating = 4.5, Review = "Good", isLike=true },
             new ProductReview() { ProductId = 3, UserId = 3, Rating = 6, Review = "Good", isLike=true },
             new ProductReview() { ProductId = 4, UserId = 4, Rating = 5, Review = "Good", isLike=true },
@@ -53,6 +54,7 @@ namespace ProductReviewManagement
                 dataTable.Rows.Add(lists.ProductId, lists.UserId, lists.Rating, lists.Review,(bool)lists.isLike);
             }
             management.RetrieveRecordsWithIsLikeTrue(dataTable);
+            management.findAvrageRating(list);
         }
     }
 }

@@ -91,10 +91,10 @@ namespace ProductReviewManagement
         public DataTable createTable()
         {
             dataTable.Columns.Add("ProductId", typeof(int));
-            dataTable.Columns.Add("UserId",typeof(int));
-            dataTable.Columns.Add("Rating",typeof(double));
+            dataTable.Columns.Add("UserId", typeof(int));
+            dataTable.Columns.Add("Rating", typeof(double));
             dataTable.Columns.Add("Review");
-            dataTable.Columns.Add("isLike",typeof(bool));
+            dataTable.Columns.Add("isLike", typeof(bool));
             return dataTable;
         }
 
@@ -109,6 +109,19 @@ namespace ProductReviewManagement
             foreach (var lists in recordData)
             {
                 Console.WriteLine("Product id = " + lists.Field<int>("ProductId") + "User id = " + lists.Field<int>("UserId") + "Rating is = " + lists.Field<double>("Rating") + " Review is = " + lists.Field<string>("Review") + " isLike = " + lists.Field<bool>("isLike"));
+            }
+        }
+        
+        /// <summary>
+        /// Finds the avrage rating.
+        /// </summary>
+        /// <param name="listProductReviews">The list product reviews.</param>
+        public void findAvrageRating(List<ProductReview> listProductReviews)
+        {
+            var recordData = listProductReviews.GroupBy(x => x.ProductId).Select(x => new { ProductId = x.Key, Average = x.Average(y => y.Rating) });
+            foreach (var list in recordData)
+            {
+                Console.WriteLine(list.ProductId + "----------" + list.Average);
             }
         }
     }
