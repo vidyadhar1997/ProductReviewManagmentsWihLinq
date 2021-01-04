@@ -8,6 +8,8 @@ namespace ProductReviewManagement
 {
     public class Management
     {
+        private readonly DataTable dataTable = new DataTable();
+
         /// <summary>
         /// Displays the specified record data.
         /// </summary>
@@ -77,8 +79,23 @@ namespace ProductReviewManagement
         public void skipTopFiveRecords(List<ProductReview> listProductReviews)
         {
             var recordData = (from productReview in listProductReviews select productReview).Skip(5).ToList();
-            Console.WriteLine("\n Top 5 records from list = ");
+            Console.WriteLine("\n Records from list after skipp top 5 lines = ");
             display(recordData);
+        }
+
+        /// <summary>
+        /// Creates the table.
+        /// </summary>
+        /// <param name="listProductReviews">The list product reviews.</param>
+        /// <returns></returns>
+        public DataTable createTable(List<ProductReview> listProductReviews)
+        {
+            dataTable.Columns.Add("ProductId");
+            dataTable.Columns.Add("UserId");
+            dataTable.Columns.Add("Rating");
+            dataTable.Columns.Add("Review");
+            dataTable.Columns.Add("isLike");
+            return dataTable;
         }
     }
 }
