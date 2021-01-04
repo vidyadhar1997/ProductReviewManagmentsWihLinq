@@ -30,5 +30,16 @@ namespace ProductReviewManagement
             Console.WriteLine("\n Top 3 records = ");
             display(recordData);
         }
+        
+        /// <summary>
+        /// Selecteds the record with rating grater than 3 and with product id =1,3,9.
+        /// </summary>
+        /// <param name="listProductReviews">The list product reviews.</param>
+        public void selectedRecords(List<ProductReview> listProductReviews)
+        {
+            var recordData = (from productReview in listProductReviews where (productReview.ProductId == 1 || productReview.ProductId == 4 || productReview.ProductId == 9) && productReview.Rating > 3 select productReview).ToList();
+            Console.WriteLine("\n Rating grater than 3 with product id 1,4,9 = ");
+            display(recordData);
+        }
     }
 }
