@@ -102,27 +102,39 @@ namespace ProductReviewManagement
         ///  Retrieve Records with is value true
         /// </summary>
         /// <param name="table"></param>
-        public void RetrieveRecordsWithIsLikeTrue(DataTable table)
+        public void retrieveRecordsWithIsLikeTrue(DataTable table)
         {
             var recordData = from productReview in table.AsEnumerable() where (productReview.Field<bool>("isLike") == true) select productReview;
-            Console.WriteLine("Records with is like true = ");
+            Console.WriteLine("\n Records with is like true = ");
             foreach (var lists in recordData)
             {
                 Console.WriteLine("Product id = " + lists.Field<int>("ProductId") + "User id = " + lists.Field<int>("UserId") + "Rating is = " + lists.Field<double>("Rating") + " Review is = " + lists.Field<string>("Review") + " isLike = " + lists.Field<bool>("isLike"));
             }
         }
-        
+
         /// <summary>
-        /// Finds the avrage rating.
+        /// Finds the avrage rating with product id.
         /// </summary>
         /// <param name="listProductReviews">The list product reviews.</param>
         public void findAvrageRating(List<ProductReview> listProductReviews)
         {
             var recordData = listProductReviews.GroupBy(x => x.ProductId).Select(x => new { ProductId = x.Key, Average = x.Average(y => y.Rating) });
+            Console.WriteLine("\n Avrage rating for each product id = ");
             foreach (var list in recordData)
             {
                 Console.WriteLine(list.ProductId + "----------" + list.Average);
             }
+        }
+        
+        /// <summary>
+        /// Recordses the with nice review.
+        /// </summary>
+        /// <param name="listProductReviews">The list product reviews.</param>
+        public void recordsWithNiceReview(List<ProductReview> listProductReviews)
+        {
+            var recordData = (from productReview in listProductReviews where (productReview.Review.Equals("Nice"))select productReview).ToList();
+            Console.WriteLine("\n Records with nice review = ");
+            display(recordData);
         }
     }
 }
